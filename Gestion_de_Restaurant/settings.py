@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'acounts',
+    'Gestion_de_Menu',
 ]
 
 MIDDLEWARE = [
