@@ -1,0 +1,19 @@
+<h1>Gestion des Utilisateurs</h1>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Nom d'utilisateur</h1>
+                <th>Rôle</h1>
+                <th>Téléphone</h1>
+        </tr>
+    </thead>
+    <tbody>
+        {%for p in utilisateurs%}
+        <tr>
+<td>{{p.user.username }}</td>
+    <td>{{p.role}}</td>
+<td>{{p.telephone}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>           
