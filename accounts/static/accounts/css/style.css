@@ -1,0 +1,22 @@
+.info{
+  background:blue;
+  padding:20px;
+  border-radius:15px;
+  box-shadow:0 6px 14px rgba(0,0,0,0.04);
+  border: 10;
+}
+.text{
+    font-style: italic;
+    color: green;
+    text-align: center;
+}
+.section{
+  max-width:var(--maxw);
+  margin:28px auto;
+  padding:0 12px
+}
+.info ul {
+    list-style-type: square;
+    padding-left: 20px;
+    color: white;
+}
