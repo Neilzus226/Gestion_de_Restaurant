@@ -1,9 +1,7 @@
 from django.db import models 
 
 # Create your models here.
-django.contrib.auth.models 
-import User 
-
+from django.contrib.auth.models import User 
 class Profil(models.Model):
 #on lit ce profil à un compte utilisateur Django
     user= models.OneTOneField(User, on_delete=models.CASCADE)
