@@ -4,5 +4,4 @@ from django.shortcuts import render
 from .models import Profil
 def liste_utilisateurs(request): 
     utilisateurs = Profil.objects.all()
-    return
-render(request, 'gestion/liste_utilisateurs.html',{'utilisateur': utilisateurs})
+    return render(request, 'gestion/liste_utilisateurs.html',{'utilisateurs': utilisateurs})
