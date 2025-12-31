@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+  <div class="container mt-5">
+    <h2>Afficher les plats disponibles</h2>
+    <form method="POST">
+      {% csrf_token %} {{ form.as_p }}
+      <button type="submit" class="btn btn-dark">Afficher</button>
+    </form>
+  </div>
+</html>
