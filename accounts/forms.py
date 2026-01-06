@@ -53,8 +53,8 @@ class ProfileUpdateForm(forms.ModelForm):
             "email",
         )
         widgets = {
-            "nom": forms.TextInput(attrs={"class": "form-control"}),
-            "prenom": forms.TextInput(attrs={"class": "form-control"}),
+            "nom": forms.TextInput(attrs={"class": "form-control","readonly":True}),
+            "prenom": forms.TextInput(attrs={"class": "form-control","readonly":True}),
             "telephone": forms.TextInput(attrs={"class": "form-control"}),
             "email": forms.EmailInput(attrs={"class": "form-control"}),
         }
