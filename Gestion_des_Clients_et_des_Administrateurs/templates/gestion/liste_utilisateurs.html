@@ -1,18 +1,33 @@
 <h1 style="color:red" >Gestion des Utilisateurs</h1>
+< a href="{% url 'utilisateur_add'%}">
+    <button style="color:blue">AJOUJER</button>
+</a>    
 <table border="10" cellpadding="15" bgcolor="" width="100%" heigth="60%">
     <thead>
         <tr>
-            <th>Nom d'utilisateur</h1>
-                <th>Rôle</h1>
-                <th>Téléphone</h1>
+            <th>Nom d'utilisateur</th>
+            <th>Rôle</th>
+            <th>Téléphone</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
         {%for p in utilisateurs%}
         <tr>
-<td>{{p.user.username }}</td>
-    <td>{{p.role}}</td>
-<td>{{p.telephone}}</td>
+            <td>{{p.user.username }}</td>
+            <td>{{p.role}}</td>
+            <td>{{p.telephone}}</td>
+            <td>
+                 <a href="{%url 'utilisateur_edit' p.id%}">
+                    <button>MODIFIER</button>
+                 </a>
+            </td>
+            <td>
+                 <a href="{%url 'utilisateur_delete' p.id%}">
+                    <button>SUPPRIMER</button>
+                 </a>
+            </td>         
+
         </tr>
         {% endfor %}
     </tbody>
