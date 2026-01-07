@@ -1,0 +1,51 @@
+/* Hero */
+.hero h1 {
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+}
+.hero p {
+    font-size: 1.3rem;
+    margin-top: 15px;
+}
+
+/* Services cards */
+.service-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* Témoignages */
+.card {
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+.card:hover {
+    transform: scale(1.05);
+}
+
+/* Footer */
+.footer-custom a {
+    transition: color 0.3s ease;
+}
+.footer-custom a:hover {
+    color: #fff;
+}
+/*pour nav*/
+.hero h1 {
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+}
+.hero p {
+  font-size: 1.3rem;
+  margin-top: 15px;
+}
+
+/* Services cards */
+.service-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px
+}
