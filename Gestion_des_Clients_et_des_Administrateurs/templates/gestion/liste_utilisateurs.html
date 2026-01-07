@@ -1,6 +1,6 @@
 <h1 style="color:red" >Gestion des Utilisateurs</h1>
 < a href="{% url 'utilisateur_add'%}">
-    <button style="color:blue">AJOUJER</button>
+    <button style="color:blue">Ajouter</button>
 </a>    
 <table border="10" cellpadding="15" bgcolor="" width="100%" heigth="60%">
     <thead>
@@ -19,12 +19,12 @@
             <td>{{p.telephone}}</td>
             <td>
                  <a href="{%url 'utilisateur_edit' p.id%}">
-                    <button>MODIFIER</button>
+                    <button>Modifier</button>
                  </a>
             </td>
             <td>
                  <a href="{%url 'utilisateur_delete' p.id%}">
-                    <button>SUPPRIMER</button>
+                    <button>Supprimer</button>
                  </a>
             </td>         
 
