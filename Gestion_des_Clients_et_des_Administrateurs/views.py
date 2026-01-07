@@ -7,6 +7,7 @@ from .models import Profil
 def liste_utilisateurs(request): 
     utilisateurs = Profil.objects.all()
     return render(request, 'gestion/liste_utilisateurs.html',{'utilisateurs': utilisateurs})
+#ajout d'un utilisateur(serveur de base)
 from django.contrib.auth.models import User
 from .models import Profil
 def ajouter_utilisateur(request):
