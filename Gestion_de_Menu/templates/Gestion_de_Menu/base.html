@@ -1,7 +1,23 @@
-
-{% extends 'Gestion_de_Menu/base.html'%}
-{% block content %}
-<div class="container mt-5">
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestion Restaurant</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm mb-4">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'Gestion_de_Menu:liste_plats' %}"
+          >Gestion du Menu</a
+        >
+      </div>
+    </nav>
+    <div class="container mt-5">
   <h1 class="mb-5">Gestion du Menu</h1>
   <div class="row mb-4">
     <div class="col-md-6">
@@ -140,10 +156,15 @@
     }
     const id = selection.value;
     if (action === "modifier") {
-      window.location.href = " /menu/modifier/" + id + "/";
+      window.location.href = "/menu/modifier/" + id + "/";
     } else if (action === "supprimer") {
       window.location.href = "/menu/supprimer/" + id + "/";
     }
   }
 </script>
-{%endblock%}
+    
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

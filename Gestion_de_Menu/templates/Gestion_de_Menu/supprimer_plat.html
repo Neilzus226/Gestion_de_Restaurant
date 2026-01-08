@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-{% extends 'base.html' %} {% block content %}
+{% extends 'Gestion_de_Menu/base.html' %} {% block content %}
 <div
   style="
     margin: 50px auto;
@@ -31,7 +31,7 @@
       Confirmer la suppression
     </button>
     <a
-      href="{% url 'liste_plats' %}"
+      href="{% url 'Gestion_de_Menu:supprimer_plat' %}"
       style="margin-left: 15px; text-decoration: none; color: #6c757d"
       >Annuler</a
     >
