@@ -90,3 +90,19 @@ def enregistrer_vente(request, plat_id):
     # Redirection vers la facture PDF
     return redirect("Gestion_de_Vente:facture_pdf", vente_id=vente.id)
 
+def facture_pdf(request, vente_id):
+    vente = get_object_or_404(Vente, pk=vente_id)
+    template = get_template("facture_pdf.html")
+    html = template.render({"vente": vente})
+
+    response = HttpResponse(content_type="application/pdf")
+    response["Content-Disposition"] = f'attachment; filename="facture_{vente.id}.pdf"'
+
+    # Conversion HTML → PDF
+    pisa_status = pisa.CreatePDF(html, dest=response)
+
+    if pisa_status.err:
+        return HttpResponse("Erreur lors de la génération du PDF", status=500)
+
+    return response
+
