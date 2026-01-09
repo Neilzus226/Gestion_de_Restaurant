@@ -64,7 +64,7 @@ ROOT_URLCONF = 'Gestion_de_Restaurant.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR/ 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -135,3 +135,7 @@ STATIC_URL = 'static/'
 
 AUTH_USER_MODEL = "accounts.CustomUser"
 
+import os
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR ,'Gestion_des_Clients_et_des_Administrateurs','static') 
+]

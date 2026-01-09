@@ -1,0 +1,132 @@
+table{
+    width: 100%;
+    border-collapse:collapse;
+    margin-top: 20px;
+    font-family:Arial, sans-serif;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+thead{
+    background-color: #f44336;
+    color: white;
+}
+th,td{
+    padding:12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+tr:hover{
+    background-color: #f6f9f9;
+}
+h1 {
+    text-align: center;
+    color: #f44336;
+    font-family: Verdana, sans-serif;
+}
+.btn-ajouter {
+    background-color:#2196F3;
+    color : white;
+    padding : 8px 14px;
+    border : none;
+    border-raduis: 4px;
+    cursor: pointer;
+    margin_bottom: 15px;
+    font-weight: bold;
+}
+.btn-ajouter:hover {
+    background-color: #45a049;
+}
+
+.btn-modifier {
+    background-color: #2196F3;
+    color: white;
+    padding:6px 12px;
+    border:none;
+    border-raduis: 4px;
+    cursor: pointer;
+}
+
+.btn-supprimer {
+    background-color: #f44336;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-raduis: 4px;
+    cursor: pointer;
+}
+.btn-supprimer:hover{
+    opacity:0.8;
+}
+body{
+    background-color: #2196F3;
+}
+
+/*style pour l'ajout d'un clien*/
+/* Le conteneur du groupe (Label + Input) */
+/* 1. On réduit la largeur de la carte et on s'assure qu'elle est centrée */
+.form-card {
+    background: white;
+    padding: 100px;
+    border-radius: 80px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 700px; /* Taille réduite (avant 450px) */
+    margin: 200px auto; /* Centre la carte horizontalement */
+}
+
+/* 2. On réduit la taille interne des champs (padding et police) */
+.form-group input, 
+.form-group select {
+    width: 100%;
+    padding: 8px 12px; /* Padding réduit (avant 12px) */
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;    /* Police légèrement plus petite */
+    box-sizing: border-box;
+    display: block;
+}
+
+/* 3. On centre le titre et on réduit sa marge */
+.form-card h2 {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* 4. On ajuste les boutons pour qu'ils soient plus fins et centrés */
+.form-actions {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre les éléments dans la colonne */
+    gap: 10px;
+}
+
+.btn-save {
+    width: 80%; /* Le bouton ne prend plus toute la largeur */
+    background-color: #2196F3;
+    color: white;
+    padding: 10px; /* Plus fin */
+    border: none;
+    border-radius: 20px; /* Style arrondi plus moderne */
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-save:hover {
+    background-color: #1976D2;
+    transform: scale(1.02); /* Petit effet de zoom au survol */
+}
+
+.btn-cancel {
+    text-decoration: none;
+    color: #888;
+    font-size: 13px;
+}
+.container-form {
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center;     /* Centre verticalement */
+    height: 100vh;           /* Prend toute la hauteur de l'écran */
+}

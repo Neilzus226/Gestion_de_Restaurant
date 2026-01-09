@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Ajouter Utilisateur</title>
+</head>
+<body>
+
+<div class="container-form">
+    <div class="form-card">
+        <h2>Ajouter un utilisateur</h2>
+        
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="nom">Nom</label>
+                <input type="text" id="nom" name="nom" placeholder="Ex: Jean" required>
+            </div>
+
+            <div class="form-group">
+                <label for="prenom">Prénom</label>
+                <input type="text" id="prenom" name="prenom" placeholder="Ex: Dupont" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Ex: julien@gmail.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" name="password" placeholder="********" required>
+            </div>
+
+            <div class="form-group">
+                <label for="role">Rôle</label>
+                <select name="role" id="role" required>
+                    <option value="" disabled selected>Choisir un rôle</option>
+                    <option value="ADMIN">Administrateur</option>
+                    <option value="CLIENT">Client</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="telephone">Téléphone</label>    
+                <input type="text" id="telephone" name="telephone" placeholder="Ex: +226 00 00 00 00">
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-save">Enregistrer l'utilisateur</button>
+                <a href="{% url 'Gestion_des_Clients_et_des_Administrateurs:liste_utilisateurs' %}" class="btn-cancel">Annuler</a>
+            </div>
+
+            {% if erreur %}
+                <p class="error-msg">{{ erreur }}</p>
+            {% endif %}    
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
