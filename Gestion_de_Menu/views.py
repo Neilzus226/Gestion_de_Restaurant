@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.db import models
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Plat
 from .forms import PlatForm
@@ -46,3 +47,15 @@ def supprimer_plat(request, pk):
 # vue de la page d'acceuille.
 def base(request):
     return liste_plats(request)
+
+
+def tableau_de_bord(request):
+    plats_count = Plat.objects.count()
+    categories_count = Plat.objects.values('categorie').distinct().count()
+    revenus_total = Plat.objects.aggregate(total=models.Sum('prix'))['total'] or 0
+
+    return render(request, 'Gestion_de_Menu/tableau_de_bord.html', {
+        'plats_count': plats_count,
+        'categories_count': categories_count,
+        'revenus_total': revenus_total,
+    })
