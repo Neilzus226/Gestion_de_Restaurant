@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Modifier Utilisateur</title>
+</head>
+<body>
+
+<div class="container-form">
+    <div class="form-card">
+        <h2>Modifier l'utilisateur</h2>
+        
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="username">Nom d'utilisateur</label>
+                <input type="text" id="username" name="username" value="{{profil.user.username}}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Nouveau mot de passe (optionnel)</label>
+                <input type="password" id="password" name="password" placeholder="Laissez vide pour ne pas changer">
+            </div>
+
+            <div class="form-group">
+                <label for="role">Rôle</label>
+                <select name="role" id="role" required>
+                    <option value="ADMIN" {% if profil.role == "ADMIN" %}selected{% endif %}>Administrateur</option>
+                    <option value="CLIENT" {% if profil.role == "CLIENT" %}selected{% endif %}>Client</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="telephone">Téléphone</label>    
+                <input type="text" id="telephone" name="telephone" value="{{profil.telephone}}" required>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-save">Enregistrer les modifications</button>
+                <a href="{% url 'liste_utilisateurs' %}" class="btn-cancel">Annuler</a>
+            </div>
+
+            {% if erreur %}
+                <p class="error-msg">{{ erreur }}</p>
+            {% endif %}    
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
