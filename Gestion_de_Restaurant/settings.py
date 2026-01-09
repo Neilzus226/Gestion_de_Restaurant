@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'Gestion_de_Menu',
     'accounts',
     'Gestion_de_Vente',
+    'Gestion_des_Clients_et_des_Administrateurs',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +56,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
     
 ]
 

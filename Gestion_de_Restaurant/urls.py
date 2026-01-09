@@ -24,9 +24,11 @@ from accounts.views import home
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", home, name="home"),
-    path("", include("accounts.urls")),
+    path("accounts/", include("accounts.urls")),
     path('menu/', include('Gestion_de_Menu.urls')),
     path('ventes/',include('Gestion_de_Vente.urls')),
+     path('utilisateurs/',include('Gestion_des_Clients_et_des_Administrateurs.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
