@@ -11,9 +11,14 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+import pymysql
+pymysql.install_as_MySQLdb()
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Quick-start development settings - unsuitable for production
@@ -37,6 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Gestion_de_Menu',
+    'accounts',
+    'Gestion_de_Vente',
     'Gestion_des_Clients_et_des_Administrateurs',
 ]
 
@@ -48,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'Gestion_de_Restaurant.urls'
@@ -75,8 +84,15 @@ WSGI_APPLICATION = 'Gestion_de_Restaurant.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'restaurant',
+        'USER': 'root',
+        'PASSWORD': '1234',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        }
     }
 }
 
@@ -116,6 +132,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+AUTH_USER_MODEL = "accounts.CustomUser"
+
 import os
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR ,'Gestion_des_Clients_et_des_Administrateurs','static') 

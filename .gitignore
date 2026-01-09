@@ -1,0 +1,29 @@
+# Fichiers compilés Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Environnements virtuels
+venv/
+env/
+
+# Fichiers de configuration locaux
+.env
+*.sqlite3
+
+# Logs
+*.log
+
+# Cache et fichiers temporaires
+*.cache
+*.tmp
+
+# Dossiers spécifiques à Django
+media/
+staticfiles/
+#autre
+__pycache__/
+*.pyc
+__pycache__/
+*.pyc
+db.sqlite3
