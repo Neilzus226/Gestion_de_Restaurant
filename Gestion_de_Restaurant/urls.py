@@ -15,10 +15,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include
+from django.views.generic import RedirectView  # <-- Importation importante
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('utilisateurs/',
-    include('Gestion_des_Clients_et_des_Administrateurs.urls')),
-    ]
+    
+    # Cette ligne est magique : elle redirige l'accueil vers votre liste
+    path('', RedirectView.as_view(url='/utilisateurs/liste/'), name='home'),
+    
+    path('utilisateurs/', include('Gestion_des_Clients_et_des_Administrateurs.urls')),
+]
