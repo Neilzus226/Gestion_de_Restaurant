@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Ventes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    {% include 'nav.html' %}
+
+    <div class="container mt-5">
+        <!-- Titre -->
+        <div class="text-center mb-4">
+            <h1 class="fst-italic fw-bold text-primary">Liste des Ventes</h1>
+            <p class="text-muted">Suivi des ventes enregistrées dans le système</p>
+        </div>
+
+        <!-- Tableau -->
+        <div class="card shadow-lg border-0">
+            <div class="card-body">
+                <table class="table table-hover align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Plat</th>
+                            <th>Quantité</th>
+                            <th>Date</th>
+                            <th>Total (FCFA)</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for vente in ventes %}
+                        <tr>
+                            <td class="fw-semibold">{{ vente.plat.nom }}</td>
+                            <td>{{ vente.quantite }}</td>
+                            <td>{{ vente.date_vente|date:"d/m/Y H:i" }}</td>
+                            <td class="text-success fw-bold">{{ vente.prix_total }}</td>
+                            <td>
+                                <!-- Bouton Modifier -->
+                                <a href="{% url 'Gestion_de_Vente:modifier_vente' vente.id %}" 
+                                   class="btn btn-warning btn-sm"> Modifier</a>
+
+                                <!-- Bouton Supprimer -->
+                                <a href="{% url 'Gestion_de_Vente:supprimer_vente' vente.id %}" 
+                                   class="btn btn-danger btn-sm"
+                                   onclick="return confirm('Voulez-vous vraiment supprimer cette vente ?');">
+                                   Supprimer
+                                </a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5" class="text-center text-muted">Aucune vente enregistrée</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Bouton Ajouter -->
+        <div class="text-end mt-4">
+            <a href="{% url 'Gestion_de_Vente:ajouter_vente' %}" class="btn btn-lg btn-success shadow-sm">
+                Effectuer une vente
+            </a>
+        </div>
+    </div>
+    <!-- Footer -->
+<footer class="bg-dark text-white text-center py-4">
+    <p class="mb-1">&copy; 2026 Gestion Restaurant</p>
+    <small>Plateforme de gestion moderne et fiable</small>
+</footer>
+
+</body>
+</html>

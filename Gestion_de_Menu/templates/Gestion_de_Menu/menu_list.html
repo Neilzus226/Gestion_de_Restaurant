@@ -1,0 +1,149 @@
+
+{% extends 'Gestion_de_Menu/base.html'%}
+{% block content %}
+<div class="container mt-5">
+  <h1 class="mb-5">Gestion du Menu</h1>
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <form method="GET" action="{% url 'Gestion_de_Menu:liste_plats' %}" class="d-flex">
+        <input
+          type="text"
+          name="search"
+          class="form-control me-2"
+          placeholder="Rechercher un plat par son nom"
+          value="{{ request.GET.search | default:''}}"
+        />
+        <button type="submit" class="btn btn-warning">Rechercher</button>
+        {% if request.GET.search %}
+        <a href="{% url 'Gestion_de_Menu:liste_plats' %}" class="btn btn-link">Annuler</a>
+        {% endif %}
+      </form>
+    </div>
+  </div>
+  <form id="menuForm">
+    <div class="table-responsible shadow-sm border rounded">
+      <table class="table table-hover bg-white mb-0">
+        <thead class="table-dark">
+          <tr>
+            <th style="width: 50px" class="text-center">Sél</th>
+            <th>ID</th>
+            <th>Nom du Plat</th>
+            <th>Catégorie</th>
+            <th>Prix (FCFA)</th>
+            <th>Description</th>
+            <th class="text-center">Voir le plat</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for plat in plats %}
+          <tr>
+            <td class="text-center">
+              <input
+                type="radio"
+                name="selected_plat"
+                value="{{plat.id_plat}}"
+                required
+              />
+            </td>
+            <td class="text-muted">{{ plat.id_plat }}</td>
+            <td><strong>{{plat.nom}}</strong></td>
+            <td>
+              <span class="badge bg-info text-dark">{{plat.categorie}}</span>
+            </td>
+            <td class="fw-bold">{{plat.prix}}</td>
+            <td class="small text-secondary">
+              {{plat.description | truncatewords:10}}
+            </td>
+            <td class="text-center">
+              <button
+                type="button"
+                class="btn btn-sm btn-info text-white"
+                data-bs-toggle="modal"
+                data-bs-target="#modal{{plat.id_plat}}"
+              >
+                Afficher
+              </button>
+            </td>
+          </tr>
+          <div
+            class="modal fade"
+            id="modal{{ plat.id_plat }}"
+            tabindex="-1"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">{{plat.nom}}</h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body text-center">
+                  {% if plat.image %}
+                  <img
+                    src="{{ plat.image.url }}"
+                    class="img-fluid rounded shadow"
+                    alt="Photo de {{ plat.nom }}"
+                  />
+                  {% else %}
+                  <div class="py-4 border rounded bg-light">
+                    <p class="text-muted mb-0">
+                      Aucune image disponible pour ce plat pour {{ plat.nom }}
+                    </p>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {%empty%}
+          <tr>
+            <td colspan="7" class="text-center py-4">Aucun plat trouvé</td>
+          </tr>
+          {%endfor%}
+        </tbody>
+      </table>
+    </div>
+    <div class="mt-5 p-3 bg-light border rounded d-flex gap-3">
+      <a href="{% url 'Gestion_de_Menu:ajouter_plat'%}" class="btn btn-success">Ajouter</a>
+      <button
+        type="button"
+        onclick="validerAction('modifier')"
+        class="btn btn-warning"
+      >
+        Modifier
+      </button>
+      <button
+        type="button"
+        onclick="validerAction('supprimer')"
+        class="btn btn-danger"
+      >
+        Supprimer
+      </button>
+    </div>
+  </form>
+</div>
+
+<script>
+  function validerAction(action) {
+    const selection = document.querySelector(
+      'input[name="selected_plat"]:checked'
+    );
+    if (!selection) {
+      alert("Sélectionner un plat d'abord");
+      return;
+    }
+    const id = selection.value;
+    if (action === "modifier") {
+      window.location.href = " /menu/modifier/" + id + "/";
+    } else if (action === "supprimer") {
+      window.location.href = "/menu/supprimer/" + id + "/";
+    }
+  }
+</script>
+{%endblock%}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Facture</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .facture { border: 1px solid #ddd; padding: 20px; border-radius: 8px; }
+    h2 { text-align: center; }
+  </style>
+</head>
+<body>
+  <div class="facture">
+    <h2>Facture</h2>
+    <p><strong>Plat :</strong> {{ vente.plat.nom }}</p>
+    <p><strong>Quantité :</strong> {{ vente.quantite }}</p>
+    <p><strong>Total :</strong> {{ vente.total }} FCFA</p>
+    <p><strong>Date :</strong> {{ vente.date_vente }}</p>
+  </div>
+</body>
+</html>

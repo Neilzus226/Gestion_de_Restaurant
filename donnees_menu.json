@@ -1,0 +1,52 @@
+[
+  {
+    "model": "Gestion_de_Menu.plat",
+    "pk": 3,
+    "fields": {
+      "nom": "Riz sauce",
+      "categorie": "Plat principal",
+      "prix": "450.00",
+      "description": "Riz sauce bien pimentÚ\r\n+ du jus de mangue"
+    }
+  },
+  {
+    "model": "Gestion_de_Menu.plat",
+    "pk": 5,
+    "fields": {
+      "nom": "T¶t",
+      "categorie": "Dessert",
+      "prix": "300.00",
+      "description": "Avec sauce gombo sec"
+    }
+  },
+  {
+    "model": "Gestion_de_Menu.plat",
+    "pk": 6,
+    "fields": {
+      "nom": "Fanta",
+      "categorie": "Boisson",
+      "prix": "250.00",
+      "description": "Fraiche"
+    }
+  },
+  {
+    "model": "Gestion_de_Menu.plat",
+    "pk": 8,
+    "fields": {
+      "nom": "spaguetti",
+      "categorie": "Dessert",
+      "prix": "500.00",
+      "description": "Accompgner d'un jus"
+    }
+  },
+  {
+    "model": "Gestion_de_Menu.plat",
+    "pk": 9,
+    "fields": {
+      "nom": "mangue",
+      "categorie": "Boisson",
+      "prix": "200.00",
+      "description": "M¹r"
+    }
+  }
+]
