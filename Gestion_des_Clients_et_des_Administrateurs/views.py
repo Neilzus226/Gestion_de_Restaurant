@@ -20,7 +20,7 @@ def liste_utilisateurs(request):
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .models import Profil  # Remplacez 'Profil' par le nom exact de votre modèle
-
+from django.contrib import messages
 def utilisateur_add(request):
     if request.method == "POST":
         # 1. On récupère les données saisies dans le formulaire HTML
@@ -38,6 +38,8 @@ def utilisateur_add(request):
         try:
             # 3. Création de l'utilisateur dans la table de base de Django (Auth User)
             nouvel_user = User.objects.create_user(username=nom, password=mdp)
+            # 3. On ajoute le message de succès
+            messages.success(request, f"L'utilisateur '{nom}' a été ajouté avec succès !")
 
             # 4. Création du profil associé (votre table personnalisée)
             Profil.objects.create(
