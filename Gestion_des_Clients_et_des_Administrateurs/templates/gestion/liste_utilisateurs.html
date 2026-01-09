@@ -1,50 +1,54 @@
 {% load static %}
 <link rel="stylesheet"  href="{% static 'css/style.css' %}">
-<h1 style="color:red" >Gestion des Utilisateurs</h1>
-<a href="{% url 'utilisateur_add'%}">
+
+<h1 style="color:red">Gestion des Utilisateurs</h1>
+
+<a href="{% url 'Gestion_des_Clients_et_des_Administrateurs:utilisateur_add' %}">
     <button class="btn-ajouter">Ajouter</button>
 </a>  
 <br><br>  
-<!--bouton de recherche-->
-<form method="get" action="{%url 'liste_utilisateurs'%}">
-    <input type="text" name="q" placeholder="Rechercher par nom, rôle,ou téléphone">
+
+<!-- Bouton de recherche -->
+<form method="get" action="{% url 'Gestion_des_Clients_et_des_Administrateurs:liste_utilisateurs' %}">
+    <input type="text" name="q" placeholder="Rechercher par nom, prénom, email, rôle ou téléphone">
     <button type="submit" class="btn-ajouter">Rechercher</button>
-    <a href="{% url 'liste_utilisateurs' %}">
+    <a href="{% url 'Gestion_des_Clients_et_des_Administrateurs:liste_utilisateurs' %}">
         <button type="button" class="btn-ajouter">Réinitialiser</button>
     </a>    
 </form>  
 
-<table border="10" cellpadding="15" bgcolor="" width="100%" heigth="60%">
+<table border="1" cellpadding="10" width="100%">
     <thead>
         <tr>
-            <th>Nom d'utilisateur</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Email</th>
             <th>Rôle</th>
             <th>Téléphone</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-        {%for p in utilisateurs%}
+        {% for p in utilisateurs %}
         <tr>
-            <td>{{p.user.username }}</td>
-            <td>{{p.role}}</td>
-            <td>{{p.telephone}}</td>
-            <td>{{p.id}}
+            <td>{{ p.user. }}</td>
+            <td>{{ p.user.prenom }}</td>
+            <td>{{ p.user.email }}</td>
+            <td>{{ p.role }}</td>
+            <td>{{ p.telephone }}</td>
             <td>
-                 <a href="{%url 'utilisateur_edit' p.id%}">
+                <a href="{% url 'Gestion_des_Clients_et_des_Administrateurs:utilisateur_edit' p.id %}">
                     <button class="btn-supprimer">Modifier</button>
-                 </a>
-            </td>
-            <td>
-                <a href="{%url 'utilisateur_delete' p.id%}">
+                </a>
+                <a href="{% url 'Gestion_des_Clients_et_des_Administrateurs:utilisateur_delete' p.id %}">
                     <button class="btn-supprimer">Supprimer</button>
                 </a>
             </td>         
         </tr>
-        {%empty%}
+        {% empty %}
         <tr>
-            <td colspan="4">Aucun utilisateur trouvé</td>
+            <td colspan="6">Aucun utilisateur trouvé</td>
         </tr>    
         {% endfor %}
     </tbody>
-</table>           
+</table>

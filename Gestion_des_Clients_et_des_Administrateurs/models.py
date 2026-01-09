@@ -1,7 +1,7 @@
 from django.db import models 
 
 # Create your models here.
-from django.conf import settings 
+from django.conf import settings  
 class Profil(models.Model):
 #on lit ce profil à un compte utilisateur Django
     user= models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
