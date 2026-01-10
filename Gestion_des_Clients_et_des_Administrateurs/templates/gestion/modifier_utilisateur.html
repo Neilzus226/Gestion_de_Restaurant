@@ -3,52 +3,77 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>Modifier Utilisateur</title>
+    <!-- Lien vers Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-<body>
+<body class="bg-light">
+    {% include 'nav.html' %}
 
-<div class="container-form">
-    <div class="form-card">
-        <h2>Modifier l'utilisateur</h2>
-        
-        <form method="POST">
-            {% csrf_token %}
-            
-            <div class="form-group">
-                <label for="username">Nom d'utilisateur</label>
-                <input type="text" id="username" name="username" value="{{profil.user.username}}" required>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <!-- Carte Bootstrap -->
+            <div class="card shadow-lg">
+                <div class="card-header bg-warning text-dark text-center">
+                    <h2 class="mb-0">Modifier l'utilisateur</h2>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label for="nom" class="form-label">Nom</label>
+                            <input type="text" id="nom" name="nom" value="{{ profil.user.nom }}" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="prenom" class="form-label">Prénom</label>
+                            <input type="text" id="prenom" name="prenom" value="{{ profil.user.prenom }}" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" name="email" value="{{ profil.user.email }}" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Mot de passe (optionnel)</label>
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Laissez vide pour ne pas changer">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="role" class="form-label">Rôle</label>
+                            <select name="role" id="role" class="form-select" required>
+                                <option value="ADMIN" {% if profil.role == "ADMIN" %}selected{% endif %}>Administrateur</option>
+                                <option value="SERVEUR" {% if profil.role == "SERVEUR" %}selected{% endif %}>Serveur</option>
+                                <option value="CAISSIER" {% if profil.role == "CAISSIER" %}selected{% endif %}>Caissier</option>
+                                <option value="CLIENT" {% if profil.role == "CLIENT" %}selected{% endif %}>Client</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="telephone" class="form-label">Téléphone</label>
+                            <input type="text" id="telephone" name="telephone" value="{{ profil.telephone }}" class="form-control" required>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-success">Enregistrer</button>
+                            <a href="{% url 'Gestion_des_Clients_et_des_Administrateurs:liste_utilisateurs' %}" class="btn btn-danger">Annuler</a>
+                        </div>
+
+                        {% if erreur %}
+                            <div class="alert alert-danger mt-3">{{ erreur }}</div>
+                        {% endif %}
+                    </form>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="password">Nouveau mot de passe (optionnel)</label>
-                <input type="password" id="password" name="password" placeholder="Laissez vide pour ne pas changer">
-            </div>
-
-            <div class="form-group">
-                <label for="role">Rôle</label>
-                <select name="role" id="role" required>
-                    <option value="ADMIN" {% if profil.role == "ADMIN" %}selected{% endif %}>Administrateur</option>
-                    <option value="CLIENT" {% if profil.role == "CLIENT" %}selected{% endif %}>Client</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="telephone">Téléphone</label>    
-                <input type="text" id="telephone" name="telephone" value="{{profil.telephone}}" required>
-            </div>
-
-            <div class="form-actions">
-                <button type="submit" class="btn-save">Enregistrer les modifications</button>
-                <a href="{% url 'liste_utilisateurs' %}" class="btn-cancel">Annuler</a>
-            </div>
-
-            {% if erreur %}
-                <p class="error-msg">{{ erreur }}</p>
-            {% endif %}    
-        </form>
+        </div>
     </div>
 </div>
 
+<!-- Script Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

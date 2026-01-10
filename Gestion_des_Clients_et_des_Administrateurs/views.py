@@ -37,7 +37,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
-
 def utilisateur_add(request):
     if request.method == "POST":
         # Récupération des données
@@ -64,9 +63,13 @@ def utilisateur_add(request):
                 telephone=tel
             )
 
-            # Ajout du rôle si ton modèle CustomUser a ce champ
-            nouvel_user.role = role
-            nouvel_user.save()
+           
+            # ✅ Création du profil lié à l'utilisateur
+            Profil.objects.create(
+                user=nouvel_user,
+                role=role,
+                telephone=tel
+            )
 
             # Redirection vers la liste
             return redirect('Gestion_des_Clients_et_des_Administrateurs:liste_utilisateurs')
@@ -77,21 +80,35 @@ def utilisateur_add(request):
             })
 
     return render(request, 'ajouter_utilisateur.html')
+
 #code Python de "Modifier un utilisateur"  
-def modifier_utilisateur(request,id):
-    profil = get_object_or_404(Profil, id=id)
+def modifier_utilisateur(request, id):
+    user = get_object_or_404(User, id=id)
+    profil = getattr(user, "profil", None)
+
     if request.method == 'POST':
-        profil.role = request.POST.get("role", profil.role)
-        profil.telephone = request.POST.get("telephone", profil.user.username)
-        profil.user.set_password(request.POST.get("password",profil.user.password))
-        profil.user.save()
-        profil.save()
-        return redirect("liste_utilisateurs")
-    return render(request,"gestion/modifier_utilisateur.html",{'profil':profil})
-    
+        user.nom = request.POST.get("nom", user.nom)
+        user.prennom = request.POST.get("prenom", user.prenom)
+        user.email = request.POST.get("email", user.email)
+        new_password = request.POST.get("password")
+        if new_password:
+            user.set_password(new_password)
+        user.save()
+
+        if profil:
+            profil.role = request.POST.get("role", profil.role)
+            profil.telephone = request.POST.get("telephone", profil.telephone)
+            profil.save()
+
+        return redirect("Gestion_des_Clients_et_des_Administrateurs:liste_utilisateurs")
+
+    return render(request, "gestion/modifier_utilisateur.html", {"profil": profil})
+
 #code python de "supprimer utilisateur"
-def supprimer_utilisateur(request,id):    
-    profil = get_object_or_404(Profil, id=id)
-    profil.user.delete()
-    profil.delete()
-    return redirect('liste_utilisateurs')    
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
+def supprimer_utilisateur(request, id):
+    user = get_object_or_404(User, id=id)
+    user.delete()
+    return redirect("Gestion_des_Clients_et_des_Administrateurs:liste_utilisateurs")
