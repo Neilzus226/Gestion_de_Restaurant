@@ -21,7 +21,7 @@ def ajouter_plat(request):
         form = PlatForm()
     return render(request, 'Gestion_de_Menu/ajouter_plat.html', {'form': form})
 
-# Vue pour supprimer un plat
+# Vue pour modifier un plat
 def modifier_plat(request,pk):
     plat = get_object_or_404(Plat, pk=pk)
     if request.method == "POST":
@@ -33,7 +33,7 @@ def modifier_plat(request,pk):
         form = PlatForm(instance=plat)
     return render(request, 'Gestion_de_Menu/ajouter_plat.html', {'form': form,'edit_mode':True})
 
-# Vue pour ajouter un plat
+# Vue pour supprimer un plat
 def supprimer_plat(request, pk):
     plat = get_object_or_404(Plat, pk=pk)
     if request.method == "POST":

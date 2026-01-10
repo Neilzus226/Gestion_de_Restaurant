@@ -1,5 +1,6 @@
 # Node
 node_modules/
+
 # Python
 __pycache__/
 *.__pyc
@@ -7,8 +8,10 @@ __pycache__/
 venv/
 # Logs
 *.Log
+
 # Env
 .env
+
 # OS
 .DS_Store
 Thumbs.db
