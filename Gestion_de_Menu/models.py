@@ -15,4 +15,12 @@ class Plat(models.Model):
 
     def __str__(self):
         return self.nom
+class Vente(models.Model):
+    plat = models.ForeignKey('Plat', on_delete=models.CASCADE, related_name='ventes_menu')
+    quantite = models.PositiveIntegerField(default=1)
+    date_vente = models.DateTimeField(auto_now_add=True)
+    total_prix = models.DecimalField(max_digits=10, decimal_places=2)
+    
+    def __str__(self):
+        return f"{self.quantite} x {self.plat.nom}"
 # Create your models here.

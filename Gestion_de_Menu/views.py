@@ -3,6 +3,10 @@ from django.db import models
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Plat
 from .forms import PlatForm
+from django.shortcuts import render
+from django.db.models import Sum, Count
+from .models import Plat, Vente
+from Gestion_de_Vente.models import Vente
 # Vue pour afficher la liste et rechercher
 def liste_plats(request):
     query = request.GET.get('search')
@@ -48,14 +52,25 @@ def supprimer_plat(request, pk):
 def base(request):
     return liste_plats(request)
 
-
+# vue pour le tableau de bord
 def tableau_de_bord(request):
     plats_count = Plat.objects.count()
     categories_count = Plat.objects.values('categorie').distinct().count()
-    revenus_total = Plat.objects.aggregate(total=models.Sum('prix'))['total'] or 0
+    revenus_total = Plat.objects.aggregate(total=Sum('prix'))['total'] or 0
+    total_commandes = Vente.objects.count()
+    ca_total = Vente.objects.aggregate(total=Sum('prix_total'))['total'] or 0
+    top_5_plats = Plat.objects.annotate(
+        total_ventes=Count('ventes_globales'), 
+        revenu_genere=Sum('ventes_globales__prix_total')
+    ).order_by('-total_ventes')[:5]
 
-    return render(request, 'Gestion_de_Menu/tableau_de_bord.html', {
+    context = {
         'plats_count': plats_count,
         'categories_count': categories_count,
         'revenus_total': revenus_total,
-    })
+        'total_commandes': total_commandes,
+        'ca_total': ca_total,
+        'top_5_plats': top_5_plats,
+    }
+
+    return render(request, 'Gestion_de_Menu/tableau_de_bord.html', context)
